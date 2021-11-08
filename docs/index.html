@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
+<title>Témaajánlatok</title>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
 h2 {
   font-family: 'Roboto', sans-serif;
+  color: #242943;
 }
 p {
   font-family: 'Roboto', sans-serif;
+  color: #242943;
 }
 
 
 .accordion {
   background-color: #eee;
-  color: #444;
+  color: #242943;
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -26,15 +29,19 @@ p {
   font-family: 'Roboto', sans-serif;
 }
 
-.active, .accordion:hover {
-  background-color: #ccc;
+.active{
+  background-color: #f5f5f5;
+  font-family: 'Roboto', sans-serif;
+}
+.accordion:hover {
+  background-color: #f6f6f6;
   font-family: 'Roboto', sans-serif;
 }
 
 .panel {
   font-family: 'Roboto', sans-serif;
   padding: 0 18px;
-  background-color: white;
+  background-color: #f4f4f4;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -50,22 +57,26 @@ body {
 </head>
 <body>
 
-<h2>Témaanjánlatok</h2>
+<h2>Témaajánlatok</h2>
 
 <p>A címekre kattintva további információk jelennek meg.</p>
 
-<img src="img/infologo01.svg" width="400px"></img>
+<img src="img/infologo02.svg"></img>
 
 <button class="accordion">Real-time ROS /ROS2 Neurális háló alapú, közlekedési célú mozgásbecslés</button>
 <div class="panel">
   <p>A járművet körülvevő objektumok mozgásának prediktálása, becslése (esztimálása) az önvezető (autonóm) járművek fontos alfeladata. Jelenlegi tudásunk szerint ezt a feladatot kameraképből vagy LIDAR pontfelhőből neurális hálók segítségével lehet a leghatékonyabban megoldani. Erre megoldás lehet például az időbeliséget reprezentáló RNN (recurrent neural network) alkalmazása. </p>
-  <p></p>
+  <p>
+    A munka nem előzménynélküli, saját részmegoldások és egyéb források is elérhetőek:
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OT_MxopvfQ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </p>
+  <p>Fontos, hogy real-time (20Hz) és ROS node megoldás fogadható csak el.</p>
 </div>
 
 <button class="accordion">Coverage path planning, gyakorlati megközelítésből</button>
 <div class="panel">
   <p>A feladat magában foglalja coverage path planning (CPP) algoritmusok megvalósítását és elemző összevetését, valamint a vonatkozó szakirodalom áttekintését is. A CPP algoritmusok térképek optimális bejárásának kérdéseivel foglalkoznak. A megvalósítás nyelve lehet python gay C++. Legalább két CPP algoritmus (pl. boustrophedon cellular decomposition coverage, iterative structured orientation coverage) megvalósítása a cél. Az algoritmusok occupancy grid map (foglatsági rács) reprezentációjú térképeken működjenek. A megvalósítás után az elemző összevetés térjen ki a megvalósított algoritmusok teljesítményére, számítási igényére, illetve nyelvekkel kapcsolatos megvalósíthatósági kérdésekre is. Amennyiben a munka során feltár lehetőségeket, tegyen javaslatot az algoritmusok optimalizációjával kapcsolatban is. A forráskódot publikus repository-n megosztani. Példa a lehetséges eredményre, kimenetre (ez MATLAB-ban készült):
-    <img src="img/coverage01.gif" width="400px"></img>
+    <img src="img/coverage01.gif"></img>
     
   </p>
 </div>
@@ -73,9 +84,29 @@ body {
 <button class="accordion">ROS/ROS2 GUI kialakítása RVIZ/RVIZ2 pluginként</button>
 <div class="panel">
   <p>RVIZ/RVIZ2 plugin létrehozása Linux/Windows 11</p>
+  <p><img src="img/rviz_gui01.png"></img></p>
 </div>
 
-<h2>Korábbi témaanjánlatok</h2>
+<button class="accordion">3D egyetemi campus létrehozása</button>
+<div class="panel">
+  <p>LIDAR mérésekből az egyetem campusának 3D mesh létrehozás, openstreetmap-ra feltöltése (ez jelenleg is létezik, de elég pontatlannak tűnik, viszont vannak LIDAR méréseink, amivel ezt meg lehetne oldani) <a href="https://osmbuildings.org/?lat=47.69387&lon=17.62802&zoom=18.6&tilt=34&rotation=-28">osmbuildings.org</a>
+    Első lépés itt a 3D point cloud létrehozása lenne. Ebben van egy kis tapasztalatunk, tudok segíteni, de internetről összeszedhető a tudás. Amit mi készítettünk egy zalai épületről az pl így néz ki:
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/MoGnmP2Gc6w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+    Második lépés a pontfelhőből valamilyen mesh készítése akár "kézzel" akár automatikusan pl így: <a href="https://pointclouds.org/documentation/tutorials/greedy_projection.html">pointclouds.org</a>
+    Aztán jó lenne egyszerűsíteni ezt a mesht, ha olyan bonyolutra sikerült, mint a fenti linken, primitívekkel (pl tégletest, henger)
+    Ezután megismerni az OSM API-t 
+    Pontosítani a jelenlegi ábrázolást és feltölteni</p>
+  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/kTf-VvokQH8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+</div>
+
+<button class="accordion">Konvolúciós neurális háló-alapú vezethető útfelület meghatározás</button>
+<div class="panel">
+  <p>A vezethető útfelület észlelése mind az vezetéstámogatás, mind az önvezető járművek fontos alfeladata. Kameraképből a vezethető útfelület meghatározása mai tudásunk szerint leghatékonyabban neurális hálók segítségével lehet. A rendszer megköveteli az úthatár azonosítását és a környező akadályok, például járművek, gyalogosok, védőkorlátok és épületek felderítését. A fejlesztendő rendszer által észlelt eredmény felhasználható ütközések elkerülésére és az útvonal tervezésére. A feladat része, hogy ROS sensor_msgs/Image típusban érkező képből visualization_msgs/MarkerArray típusú üzenetben jelenítse meg az út szélét, átkonvertálva azt "bird eye view"-ba. A marker az út szélét jelző félpoligonokból álljon, lehetőleg egyszerűsített módon, kevés pontszámból álljon. A fejlesztendő algoritmussal szemben támasztott további követelmény a 20Hz-es feldolgozási idő. Mentett log adatok a fejlesztéshez publikusan elérhetőek (<a href="https://github.com/szenergy/szenergy-public-resources">github.com/szenergy/szenergy-public-resources </a>), de kérésre újakat is tudunk rögzíteni. </p>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/hkLjQw2ZjWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
+<h2>Korábbi témaajánlatok</h2>
 <button class="accordion">Autonóm modelljárművezérlés Robot Operating System (ROS) használatával</button>
 <div class="panel">
   <p>A feladat során a járműmodell egy szimulált környezetben különböző szenzorokra támaszkodva, a pillanatnyi helyzet és szenzoradatok alapján, feltérképezi a környezetét, majd az üzemmódjának megfelelően viselkedik. A fő funkció az autonóm üzemmód, melyben a jármű számára ismeretlen, teljesen új környezetben tud haladni, úgy, hogy nem tér le az útról és az azon található akadályokkal való találkozást elkerüli. Másodlagos feladat, hogy autonóm üzemmódba a jármű a legrövidebb idő alatt a legtöbb utat tegye meg, mint egy klasszikus versenyen. Emellett, a modern, az autonóm járművek képességeit próbára tevő, Shell Eco-marathon nevű verseny, új, autonóm járművekre kiírt feladatai közül képes legyen néhányat megoldani
