@@ -7,13 +7,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
 h2 {
   font-family: 'Roboto', sans-serif;
-  color: #242943;
+  color: #244339;
 }
 p {
   font-family: 'Roboto', sans-serif;
+  padding-left: 20px;
+}
+b{
   color: #242943;
 }
-
 
 .accordion {
   background-color: #eee;
@@ -24,7 +26,7 @@ p {
   border: none;
   text-align: left;
   outline: none;
-  font-size: 15px;
+  font-size: 20px;
   transition: 0.4s;
   font-family: 'Roboto', sans-serif;
 }
@@ -41,7 +43,8 @@ p {
 .panel {
   font-family: 'Roboto', sans-serif;
   padding: 0 18px;
-  background-color: #f4f4f4;
+  background-color: #fcfcfc;
+  color: #5f647c;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -61,9 +64,9 @@ body {
 
 <p>A címekre kattintva további információk jelennek meg.</p>
 
-<img src="img/infologo02.svg"></img>
+<img src="img/infologo02.svg" />
 
-<button class="accordion">Real-time ROS /ROS2 Neurális háló alapú, közlekedési célú mozgásbecslés</button>
+<button class="accordion">Real-time ROS/ROS2 Neurális háló alapú, közlekedési célú mozgásbecslés</button>
 <div class="panel">
   <p>A járművet körülvevő objektumok mozgásának prediktálása, becslése (esztimálása) az önvezető (autonóm) járművek fontos alfeladata. Jelenlegi tudásunk szerint ezt a feladatot kameraképből vagy LIDAR pontfelhőből neurális hálók segítségével lehet a leghatékonyabban megoldani. Erre megoldás lehet például az időbeliséget reprezentáló RNN (recurrent neural network) alkalmazása. </p>
   <p>
@@ -71,20 +74,34 @@ body {
     <iframe width="560" height="315" src="https://www.youtube.com/embed/OT_MxopvfQ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </p>
   <p>Fontos, hogy real-time (20Hz) és ROS node megoldás fogadható csak el.</p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Python</li>
+    <li><b>A munka során meg kell ismerni:</b> TensorFlow / PyTorch, ROS / ROS2</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
 </div>
 
 <button class="accordion">Coverage path planning, gyakorlati megközelítésből</button>
 <div class="panel">
-  <p>A feladat magában foglalja coverage path planning (CPP) algoritmusok megvalósítását és elemző összevetését, valamint a vonatkozó szakirodalom áttekintését is. A CPP algoritmusok térképek optimális bejárásának kérdéseivel foglalkoznak. A megvalósítás nyelve lehet python gay C++. Legalább két CPP algoritmus (pl. boustrophedon cellular decomposition coverage, iterative structured orientation coverage) megvalósítása a cél. Az algoritmusok occupancy grid map (foglatsági rács) reprezentációjú térképeken működjenek. A megvalósítás után az elemző összevetés térjen ki a megvalósított algoritmusok teljesítményére, számítási igényére, illetve nyelvekkel kapcsolatos megvalósíthatósági kérdésekre is. Amennyiben a munka során feltár lehetőségeket, tegyen javaslatot az algoritmusok optimalizációjával kapcsolatban is. A forráskódot publikus repository-n megosztani. Példa a lehetséges eredményre, kimenetre (ez MATLAB-ban készült):
-    <img src="img/coverage01.gif"></img>
-    
-  </p>
+  <p>A feladat magában foglalja coverage path planning (CPP) algoritmusok megvalósítását és elemző összevetését, valamint a vonatkozó szakirodalom áttekintését is. A CPP algoritmusok térképek optimális bejárásának kérdéseivel foglalkoznak. A megvalósítás nyelve lehet python gay C++. Legalább két CPP algoritmus (pl. boustrophedon cellular decomposition coverage, iterative structured orientation coverage) megvalósítása a cél. Az algoritmusok occupancy grid map (foglatsági rács) reprezentációjú térképeken működjenek. A megvalósítás után az elemző összevetés térjen ki a megvalósított algoritmusok teljesítményére, számítási igényére, illetve nyelvekkel kapcsolatos megvalósíthatósági kérdésekre is. Amennyiben a munka során feltár lehetőségeket, tegyen javaslatot az algoritmusok optimalizációjával kapcsolatban is. A forráskódot publikus repository-n megosztani. Példa a lehetséges eredményre, kimenetre (ez MATLAB-ban készült):</p>
+  <p><img src="img/coverage01.gif" /></p>
+  
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Python</li>
+    <li><b>A munka során meg kell ismerni:</b> ROS / ROS2</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
 </div>
 
 <button class="accordion">ROS/ROS2 GUI kialakítása RVIZ/RVIZ2 pluginként</button>
 <div class="panel">
   <p>RVIZ/RVIZ2 plugin létrehozása Linux/Windows 11</p>
   <p><img src="img/rviz_gui01.png"></img></p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
+    <li><b>A munka során meg kell ismerni:</b> C++ / Python, ROS / ROS2</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
 </div>
 
 <button class="accordion">3D egyetemi campus létrehozása</button>
@@ -97,13 +114,46 @@ body {
     Ezután megismerni az OSM API-t 
     Pontosítani a jelenlegi ábrázolást és feltölteni</p>
   <p><iframe width="560" height="315" src="https://www.youtube.com/embed/kTf-VvokQH8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> programozási ismeretek, 3D ismeretek (pl Blender)</li>
+    <li><b>A munka során meg kell ismerni:</b> SVL simulator</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
 </div>
 
 <button class="accordion">Konvolúciós neurális háló-alapú vezethető útfelület meghatározás</button>
 <div class="panel">
   <p>A vezethető útfelület észlelése mind az vezetéstámogatás, mind az önvezető járművek fontos alfeladata. Kameraképből a vezethető útfelület meghatározása mai tudásunk szerint leghatékonyabban neurális hálók segítségével lehet. A rendszer megköveteli az úthatár azonosítását és a környező akadályok, például járművek, gyalogosok, védőkorlátok és épületek felderítését. A fejlesztendő rendszer által észlelt eredmény felhasználható ütközések elkerülésére és az útvonal tervezésére. A feladat része, hogy ROS sensor_msgs/Image típusban érkező képből visualization_msgs/MarkerArray típusú üzenetben jelenítse meg az út szélét, átkonvertálva azt "bird eye view"-ba. A marker az út szélét jelző félpoligonokból álljon, lehetőleg egyszerűsített módon, kevés pontszámból álljon. A fejlesztendő algoritmussal szemben támasztott további követelmény a 20Hz-es feldolgozási idő. Mentett log adatok a fejlesztéshez publikusan elérhetőek (<a href="https://github.com/szenergy/szenergy-public-resources">github.com/szenergy/szenergy-public-resources </a>), de kérésre újakat is tudunk rögzíteni. </p>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/hkLjQw2ZjWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/hkLjQw2ZjWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Python</li>
+    <li><b>A munka során meg kell ismerni:</b> TensorFlow / PyTorch, ROS / ROS2</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
 </div>
+
+<button class="accordion">Segway Loomo robotikai alkalmazásai</button>
+<div class="panel">
+  <p>Az egyetem tulajdonában lévő robot különböző fejelsztési feladatai.</p>
+  <p><img src="https://assets.segway-cdn.com/Product-Pictures/_product_full/loomo.png" /></p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Minimális Android fejlesztői ismeretek</li>
+    <li><b>A munka során meg kell ismerni:</b> C++ / Python, ROS / ROS2</li>
+    <li><b>Egyéb fontos tudnivaló:</b> A dolgozathoz használható robot az egyetemé, nem lehet hazavinni, de munkaidőban itt végig elérhető</li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <h2>Korábbi témaajánlatok</h2>
