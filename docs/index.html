@@ -95,22 +95,6 @@ body {
   </ul>
 </div>
 
-<button class="accordion">Emberszerű trajektória tervező hangolása tanuló algoritmus segítségével</button>
-<div class="panel">
-  <p>Egy meglévő MATLAB kód alapján egy trajektória tervezőhöz egy vezető modell elkészítése. A modell alapjai már elkészültek, ezt lehet továbbfejleszteni úgy, hogy mindez egy neurális hálót tartalmazzon. 
-  </p>
-  <p>
-  A hálót valódi forgalmi környezetben felvett mérések alapján kell tanítani, majd másik (lineáris) vezetői modellel összehasonlítani. Meg kell határozni a háló típusát és paramétereit, implementálni (leginkább MATLAB-ban, akár beépített függvények használatával) majd tesztelni a felvett adatokon. Ehhez rendelkezésre áll egy szegmentáló és kiértékelő környezet, amelyet használni lehet / kell.
-  </p>
-  <ul>
-    <li><b>Szükséges elősimeretek:</b> Programozási ismeretek, neurális hálók</li>
-    <li><b>A munka során meg kell ismerni:</b> MATLAB, TensorFlow / PyTorch, ROS / ROS2, GitHub</li>
-    <li><b>Egyéb fontos tudnivaló:</b> -</li>
-  </ul>
-</div>
-
-
-
 
 <button class="accordion">Konvolúciós neurális háló-alapú vezethető útfelület meghatározás</button>
 <div class="panel">
@@ -160,17 +144,7 @@ body {
   </ul>
 </div>
 
-<button class="accordion">2D és 3D klaszterezési algoritmusok implementációja, felhasználása LIDAR adatokra</button>
-<div class="panel">
-  <p><a href="https://en.wikipedia.org/wiki/Cluster_analysis">en.wikipedia.org/wiki/Cluster_analysis</a></p>
-  <p><img src="img/cluster01.png" width="1000px" /></p>
-  <p><img src="img/cluster02dbscan.gif" /></p>
-  <ul>
-    <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
-    <li><b>A munka során meg kell ismerni:</b> C++ / Python, GitHub</li>
-    <li><b>Egyéb fontos tudnivaló:</b> -</li>
-  </ul>
-</div>
+
 
 <button class="accordion"> Neurális hálóval / mesterséges intelligenciával támogatott sör főzés  </button>
 <div class="panel">
@@ -190,7 +164,54 @@ body {
 
 <h2 style="margin-top:4cm;">Korábbi témaajánlatok</h2>
 
+<button class="accordion">2D és 3D klaszterezési algoritmusok implementációja, felhasználása LIDAR adatokra</button>
+<div class="panel">
+  <p><b>Elvállalta: B. Lehel</b></p>
+  <p>A klaszterezés egy olyan dimenziócsökkentő, csoportosító eljárás, amellyel több dimenziós adatpontok homogén csoportokba sorolását, klasszifikálnását jelenti. Jelen esetben az adatpontok alatt 2D és 3D LIDAR szenzoradatokat értünk. 
+    A bemeneti adatokból hasonlósági alapon kell megállapítani a klasztereket, illetve megkülönböztetni a többi klaszter elemeitől. A csoportosítás alapját különböző távolság- vagy hasonlóságmértékek képezik. 
+    Az általános célú (k-means, MeanShift, DBSCAN, stb.) algoritmusok jellemző kimenetéhez képest a felismerendő klaszterek speciális alakúak (például hosszú egyenesek vagy görbék). 
+    Ez azt is jelenti, hogy a mi feladatainkra csak részben működnek eredményesen. Cél tehát, hogy a speciális alakú felismerendő objektumokra saját, új algoritmus kerüljön kifejlesztésre. 
+    Inspirációként természetesen célszerű a jelenlegi általános célú klaszterező algoritmusokat használni. A programozás C++ vagy python nyelven készüljön. 
+    A teszteléshez publikus adatokat (<a href="https://jkk-research.github.io/#datasets">jkk-research.github.io/#dataset</a>) és kérésre külön méréseket is tudunk biztosítani. A feladat része több elérhető eljárással (k-means, MeanShift, DBSCAN, stb.) összevetni a saját algoritmust. Az összehasonlítás térjen ki többek között a pontosságra, futási sebességre, algoritmikus komplexitásra. A program ROS node legyen, tehát tudjon ROS topicra feliratkozni és publikálni, real-time, 20 Hz futási sebességgel.
+    Hasonló általános célú algoritmusok leírása itt található:  <a href="https://en.wikipedia.org/wiki/Cluster_analysis">en.wikipedia.org/wiki/Cluster_analysis</a></p>
+  <p><img src="img/cluster01.png" width="1000px" /></p>
+  <p><img src="img/cluster02dbscan.gif" /></p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
+    <li><b>A munka során meg kell ismerni:</b> C++ / Python, GitHub</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
+</div>
 
+
+
+<button class="accordion">Emberszerű trajektória tervező hangolása tanuló algoritmus segítségével</button>
+<div class="panel">
+  <p><b>Elvállalta: V. Máté</b></p>
+  <p>Egy meglévő MATLAB kód alapján egy trajektória tervezőhöz egy vezető modell elkészítése. A modell alapjai már elkészültek, ezt lehet továbbfejleszteni úgy, hogy mindez egy neurális hálót tartalmazzon. 
+  </p>
+  
+  <p>
+    A piacon elérhető vezetéstámogató és részben automatizált vezetési rendszerek alapvető eleme a sávtartó funkció.
+    Azonban ezen funkciók nagyban leegyszerűsített, és így az emberi vezetési stílustól eltérő viselkedést mutatnak. A dolgozat
+    során cél:
+    <ul>
+      <li>Jól meghatározott forgalmi helyzetekben valódi sofőrök választott trajektóriáinak azonosítása.</li>
+      <li>Egy vezetői matematikai modell létrehozása neurális háló (vagy más nemlineáris függvényreprezentáció) segítségével.</li>
+      <li>A mérések és egy rendelkezésre álló trajektória segítségével a modell kalibrálása.</li>
+      <li>A modell validálása erre szolgáló teszt adathalmazon.</li>
+    A feladatot egy rendelkezésre álló feldolgozó és kiértékelő környezetben kell megvalósítani, a cél, hogy az elkészült
+    algoritmus a MATLAB programmal kompatibilis legyen.
+  </ul>
+    
+  A hálót valódi forgalmi környezetben felvett mérések alapján kell tanítani, majd másik (lineáris) vezetői modellel összehasonlítani. Meg kell határozni a háló típusát és paramétereit, implementálni (leginkább MATLAB-ban, akár beépített függvények használatával) majd tesztelni a felvett adatokon. Ehhez rendelkezésre áll egy szegmentáló és kiértékelő környezet, amelyet használni lehet / kell.
+  </p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Programozási ismeretek, neurális hálók</li>
+    <li><b>A munka során meg kell ismerni:</b> MATLAB, TensorFlow / PyTorch, ROS / ROS2, GitHub</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
+</div>
 <button class="accordion">Segway Loomo robotikai alkalmazásai</button>
 <div class="panel">
   <p><b>Elvállalta: Cs. Cintia</b></p>
