@@ -70,7 +70,35 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 
 
 
+<button class="accordion">2D és 3D klaszterezési algoritmusok implementációja, felhasználása LIDAR adatokra</button>
+<div class="panel">
+  <p>A klaszterezés egy olyan dimenziócsökkentő, csoportosító eljárás, amellyel több dimenziós adatpontok homogén csoportokba sorolását, klasszifikálnását jelenti. Jelen esetben az adatpontok alatt 2D és 3D LIDAR szenzoradatokat értünk. 
+    A bemeneti adatokból hasonlósági alapon kell megállapítani a klasztereket, illetve megkülönböztetni a többi klaszter elemeitől. A csoportosítás alapját különböző távolság- vagy hasonlóságmértékek képezik. 
+    Az általános célú (k-means, MeanShift, DBSCAN, stb.) algoritmusok jellemző kimenetéhez képest a felismerendő klaszterek speciális alakúak (például hosszú egyenesek vagy görbék). 
+    Ez azt is jelenti, hogy a mi feladatainkra csak részben működnek eredményesen. Cél tehát, hogy a speciális alakú felismerendő objektumokra saját, új algoritmus kerüljön kifejlesztésre. 
+    Inspirációként természetesen célszerű a jelenlegi általános célú klaszterező algoritmusokat használni. A programozás C++ vagy python nyelven készüljön. 
+    A teszteléshez publikus adatokat (<a href="https://jkk-research.github.io/#datasets">jkk-research.github.io/#dataset</a>) és kérésre külön méréseket is tudunk biztosítani. A feladat része több elérhető eljárással (k-means, MeanShift, DBSCAN, stb.) összevetni a saját algoritmust. Az összehasonlítás térjen ki többek között a pontosságra, futási sebességre, algoritmikus komplexitásra. A program ROS node legyen, tehát tudjon ROS topicra feliratkozni és publikálni, real-time, 20 Hz futási sebességgel.
+    Hasonló általános célú algoritmusok leírása itt található:  <a href="https://en.wikipedia.org/wiki/Cluster_analysis">en.wikipedia.org/wiki/Cluster_analysis</a></p>
+  <p><img src="img/cluster01.png" width="80%" /></p>
+  <p><img src="img/cluster02dbscan.gif" /></p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
+    <li><b>A munka során meg kell ismerni:</b> C++ / Python, GitHub</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
+</div>
 
+
+<button class="accordion">Valós Ackermann robotra történő algoritmusimplementáció</button>
+<div class="panel">
+  <p>A téma kidolgozás alatt</p>
+  <p><img src="https://raw.githubusercontent.com/robotverseny/megoldas_zala23/main/etc/wheeltec_roboworks_ack01.png" width="80%" /></p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
+    <li><b>A munka során meg kell ismerni:</b> C++ / Python, GitHub</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
+</div>
 
 <button class="accordion">Real-time ROS/ROS2 Neurális háló alapú, közlekedési célú mozgásbecslés</button>
 <div class="panel">
@@ -116,17 +144,7 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 
 
 
-<button class="accordion"> Neurális hálóval / mesterséges intelligenciával támogatott sör főzés  </button>
-<div class="panel">
-  <p>A témaleírás kidolgozás alatt🍺</p>
-  <p></p>
-  <p></p>
-  <ul>
-    <li><b>Szükséges elősimeretek:</b> programozás alapismeretek, mesterséges intelligencia</li>
-    <li><b>A munka során meg kell ismerni:</b> TensorFlow / PyTorch</li>
-    <li><b>Egyéb fontos tudnivaló:</b> -</li>
-  </ul>
-</div>
+
 
 
 <!-- Korábbi témaajánlatok -->
@@ -192,27 +210,6 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 </div>
 
 
-<button class="accordion">2D és 3D klaszterezési algoritmusok implementációja, felhasználása LIDAR adatokra</button>
-<div class="panel">
-  <p><b>Elvállalta: B. Lehel</b></p>
-  <p>A klaszterezés egy olyan dimenziócsökkentő, csoportosító eljárás, amellyel több dimenziós adatpontok homogén csoportokba sorolását, klasszifikálnását jelenti. Jelen esetben az adatpontok alatt 2D és 3D LIDAR szenzoradatokat értünk. 
-    A bemeneti adatokból hasonlósági alapon kell megállapítani a klasztereket, illetve megkülönböztetni a többi klaszter elemeitől. A csoportosítás alapját különböző távolság- vagy hasonlóságmértékek képezik. 
-    Az általános célú (k-means, MeanShift, DBSCAN, stb.) algoritmusok jellemző kimenetéhez képest a felismerendő klaszterek speciális alakúak (például hosszú egyenesek vagy görbék). 
-    Ez azt is jelenti, hogy a mi feladatainkra csak részben működnek eredményesen. Cél tehát, hogy a speciális alakú felismerendő objektumokra saját, új algoritmus kerüljön kifejlesztésre. 
-    Inspirációként természetesen célszerű a jelenlegi általános célú klaszterező algoritmusokat használni. A programozás C++ vagy python nyelven készüljön. 
-    A teszteléshez publikus adatokat (<a href="https://jkk-research.github.io/#datasets">jkk-research.github.io/#dataset</a>) és kérésre külön méréseket is tudunk biztosítani. A feladat része több elérhető eljárással (k-means, MeanShift, DBSCAN, stb.) összevetni a saját algoritmust. Az összehasonlítás térjen ki többek között a pontosságra, futási sebességre, algoritmikus komplexitásra. A program ROS node legyen, tehát tudjon ROS topicra feliratkozni és publikálni, real-time, 20 Hz futási sebességgel.
-    Hasonló általános célú algoritmusok leírása itt található:  <a href="https://en.wikipedia.org/wiki/Cluster_analysis">en.wikipedia.org/wiki/Cluster_analysis</a></p>
-  <p><img src="img/cluster01.png" width="1000px" /></p>
-  <p><img src="img/cluster02dbscan.gif" /></p>
-  <ul>
-    <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
-    <li><b>A munka során meg kell ismerni:</b> C++ / Python, GitHub</li>
-    <li><b>Egyéb fontos tudnivaló:</b> -</li>
-  </ul>
-</div>
-
-
-
 <button class="accordion">Emberszerű trajektória tervező hangolása tanuló algoritmus segítségével</button>
 <div class="panel">
   <p><b>Elvállalta: V. Máté</b></p>
@@ -270,6 +267,19 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
   <p><b>Elvállalta: F. R.</b></p>
   <p>A feladat során a járműmodell egy szimulált környezetben különböző szenzorokra támaszkodva, a pillanatnyi helyzet és szenzoradatok alapján, feltérképezi a környezetét, majd az üzemmódjának megfelelően viselkedik. A fő funkció az autonóm üzemmód, melyben a jármű számára ismeretlen, teljesen új környezetben tud haladni, úgy, hogy nem tér le az útról és az azon található akadályokkal való találkozást elkerüli. Másodlagos feladat, hogy autonóm üzemmódba a jármű a legrövidebb idő alatt a legtöbb utat tegye meg, mint egy klasszikus versenyen. Emellett, a modern, az autonóm járművek képességeit próbára tevő, Shell Eco-marathon nevű verseny, új, autonóm járművekre kiírt feladatai közül képes legyen néhányat megoldani
     </p>
+</div>
+
+<button class="accordion"> Neurális hálóval / mesterséges intelligenciával támogatott sör főzés  </button>
+<div class="panel">
+  <p><b>Elvállalta: B. Sz</b></p>
+  <p>A témaleírás kidolgozás alatt🍺</p>
+  <p></p>
+  <p></p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> programozás alapismeretek, mesterséges intelligencia</li>
+    <li><b>A munka során meg kell ismerni:</b> TensorFlow / PyTorch</li>
+    <li><b>Egyéb fontos tudnivaló:</b> -</li>
+  </ul>
 </div>
 
 <button class="accordion">Coverage path planning, gyakorlati megközelítésből</button>
