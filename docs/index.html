@@ -89,10 +89,27 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 </div>
 
 
-<button class="accordion">Valós Ackermann robotra történő algoritmusimplementáció</button>
+<button class="accordion">Valós robotra történő algoritmusimplementáció, verseny céllal</button>
 <div class="panel">
-  <p>A téma kidolgozás alatt</p>
-  <p><img src="https://raw.githubusercontent.com/robotverseny/megoldas_zala23/main/etc/wheeltec_roboworks_ack01.png" width="80%" /></p>
+  <p>Az egyetemünk tulajdonában lévő Wheeltec / Roboworks Rosbot mini egy Ackermann robot, amely LIDAR-ral, kamerával, IMU-val ellátott. A robot Nvidia Jetson beágyazott vezérlővel rendelkező ROS támogatott. 
+    A gyártó nyílt forráskódú algoritmusokkal ellátta, így ROS rendszerben alkalmas sebesség és kormányszög alapú vezérlésre, valamint a pozícióról is     meglehetősen pontos becsléssel rendelkezik. ROS-ben driver szinten hozzáférhetőek a szenzorok. A feladat erre a robotra
+    történő algoritmus implementáció. 
+    Részfeladatok:
+    <ul>
+      <li>Roboworks Rosbot mini megismerése (SHH kezelés, ROS alapok elsajátítása)</li>
+      <li>A meglévő (sajnos egyáltalán nem jól dokumentált) package-k dokumentálása még az első félév során</li>
+      <li>A gazebo szimulátor (https://github.com/sze-info/racecar_gazebo) megismerése, összevetése a valós robottal. Ha
+        szükséges javaslatok felvetése a javításra.</li>
+      <li>Egyszerű fal követő megoldás implementálása, amely képes körpályán versenyezni. Összevetése a gyári megvalósítással (simple_follower /
+          laser_follower) illetve a középiskolás verseny példamegoldásával: <a href="https://robotverseny.github.io/megoldas_zala23/">robotverseny.github.io/megoldas_zala23</a></li>
+      <li>A fal követő megoldás továbbfejlesztése <a href="https://f1tenth.org/">F1tenth</a> megoldásokkal: <a href="https://robotverseny.github.io/#szabalyzat">robotverseny.github.io/#szabalyzat</a></li>
+    </ul>
+    A robotot hosszabb-rövidebb ideig kölcsönadható a dolgozat ideje alatt, ha az egytemen történő munka épp nem
+    megoldható.</p>
+  <p>
+    <img src="https://raw.githubusercontent.com/robotverseny/robotverseny.github.io/main/img/2023_002.jpg" width="40%" />
+    <img src="https://raw.githubusercontent.com/robotverseny/robotverseny.github.io/main/img/2023_001.jpg" width="40%" />
+  </p>
   <ul>
     <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
     <li><b>A munka során meg kell ismerni:</b> C++ / Python, GitHub</li>
