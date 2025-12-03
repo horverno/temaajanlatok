@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Autoware Tmp GUI Buttons</title>
+ 
+  <!-- Fira Sans font -->
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,300,700,500,400italic,500italic,700italic,300italic%22 rel="stylesheet">
+ 
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+ 
+  <style>
+    body {
+      background: #0f1317;
+      font-family:"Fira Sans", sans-serif;
+      /* bold */
+      font-weight: 500;
+      margin: 0;
+    }
+ 
+    /* Középen egymás alatt a gombok */
+    .buttons {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+ 
+    input {
+      display: none;
+    }
+ 
+    .button {
+      position: relative;
+      width: 220px;
+      height: 60px;
+    }
+ 
+    .button_label {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+ 
+    .button_inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      /* color és háttér alapállapotban */
+      background: #86c2e6;
+      border: 0px solid #ffffff;
+      color: #dfdfdf;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 300;
+      box-shadow: 0 0 0 rgba(0,0,0,0.04);
+      transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+      overflow: hidden;
+    }
+ 
+    .button_inner span.t {
+      position: relative;
+      top: 18px;
+      left: -6px;
+      transition: left 0.3s ease;
+    }
+ 
+    .button_inner i.l {
+      position: absolute;
+      left: 26px;
+      top: 18px;
+      font-size: 20px;
+      color: #00e578;
+      opacity: 0;
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+      transform: translateX(-10px);
+    }
+ 
+    .button_inner i.tick {
+      position: absolute;
+      right: 16px;
+      top: 18px;
+      font-size: 20px;
+      color: #00e578;
+      opacity: 0;
+      transform: scale(0.5) rotate(-90deg);
+      transition:
+        opacity 0.25s ease 0.05s,
+        transform 0.25s ease 0.05s;
+    }
+ 
+    /* Hover állapot – világos háttér, szöveg kicsit beljebb, ikon felbukkan */
+    .button_inner:hover {
+      background: #00e578;
+      color: #2C3940;
+      box-shadow: 0 14px 18px -14px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
+    }
+ 
+    .button_inner:hover span.t {
+      left: 10px;
+    }
+ 
+    .button_inner:hover i.l {
+      opacity: 1;
+      transform: translateX(0);
+    }
+ 
+    /* Kattintott (checked) állapot – „pill” forma, csak pipa látszik */
+    input:checked + label .button_inner {
+      background: transparent;
+      color: #00e578;
+      border-radius: 99px;
+      transform: translateY(0) scale(0.95);
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+ 
+ 
+    /* Buborékok */
+ 
+    .bubbles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+ 
+    .bubble {
+      position: absolute;
+      bottom: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00C4FF;
+      opacity: 0;
+      transform: translateY(0);
+    }
+ 
+    /* 8 buborék, különböző pozícióval és késleltetéssel */
+    .bubble:nth-child(1) { left: 20%; }
+    .bubble:nth-child(2) { left: 35%; }
+    .bubble:nth-child(3) { left: 50%; }
+    .bubble:nth-child(4) { left: 65%; }
+    .bubble:nth-child(5) { left: 80%; }
+    .bubble:nth-child(6) { left: 25%; width: 8px; height: 8px; }
+    .bubble:nth-child(7) { left: 55%; width: 8px; height: 8px; }
+    .bubble:nth-child(8) { left: 75%; width: 5px; height: 5px; }
+ 
+    .button_inner:hover .bubble:nth-child(1) { animation: bubble-up 0.7s ease-out forwards; }
+    .button_inner:hover .bubble:nth-child(2) { animation: bubble-up 0.7s ease-out 0.05s forwards; }
+    .button_inner:hover .bubble:nth-child(3) { animation: bubble-up 0.7s ease-out 0.1s forwards; }
+    .button_inner:hover .bubble:nth-child(4) { animation: bubble-up 0.7s ease-out 0.15s forwards; }
+    .button_inner:hover .bubble:nth-child(5) { animation: bubble-up 0.7s ease-out 0.2s forwards; }
+    .button_inner:hover .bubble:nth-child(6) { animation: bubble-up 0.8s ease-out 0.1s forwards; }
+    .button_inner:hover .bubble:nth-child(7) { animation: bubble-up 0.8s ease-out 0.18s forwards; }
+    .button_inner:hover .bubble:nth-child(8) { animation: bubble-up 0.6s ease-out 0.12s forwards; }
+ 
+    @keyframes bubble-up {
+      0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-40px) scale(1.1);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+ 
+<div class="buttons">
+ 
+  <!-- 1. Labor -->
+  <div class="button">
+    <input type="checkbox" id="btn-labor">
+    <label for="btn-labor" class="button_label">
+      <div class="button_inner">
+        <i class="l ion-log-in"></i>
+        <span class="t">Labor</span>
+        <i class="tick ion-checkmark-round"></i>
+ 
+        <div class="bubbles">
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+        </div>
+      </div>
+    </label>
+  </div>
+ 
+  <!-- 2. Igazgatási -->
+  <div class="button">
+    <input type="checkbox" id="btn-ig">
+    <label for="btn-ig" class="button_label">
+      <div class="button_inner">
+        <i class="l ion-log-in"></i>
+        <span class="t">Igazgatási</span>
+        <i class="tick ion-checkmark-round"></i>
+ 
+        <div class="bubbles">
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+        </div>
+      </div>
+    </label>
+  </div>
+ 
+  <!-- 3. Asd -->
+  <div class="button">
+    <input type="checkbox" id="btn-asd">
+    <label for="btn-asd" class="button_label">
+      <div class="button_inner">
+        <i class="l ion-log-in"></i>
+        <span class="t">Posta</span>
+        <i class="tick ion-checkmark-round"></i>
+ 
+        <div class="bubbles">
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+          <span class="bubble"></span>
+        </div>
+      </div>
+    </label>
+  </div>
+ 
+</div>
+ 
+</body>
+</html>
