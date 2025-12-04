@@ -13,9 +13,9 @@
   <style>
     body {
       background: #0f1317;
+      color: #919194;
       font-family:"Fira Sans", sans-serif;
-      /* bold */
-      font-weight: 500;
+      font-weight: 700;
       margin: 0;
     }
  
@@ -26,7 +26,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
     }
  
     input {
@@ -35,8 +35,8 @@
  
     .button {
       position: relative;
-      width: 220px;
-      height: 60px;
+      width: 420px;
+      height: 80px;
     }
  
     .button_label {
@@ -54,16 +54,18 @@
       /* color és háttér alapállapotban */
       background: #86c2e6;
       border: 0px solid #ffffff;
-      color: #dfdfdf;
+      color: #28445f;
       text-align: center;
-      font-size: 13px;
-      font-weight: 300;
+      font-size: 18px;
+      font-family:"Fira Sans", sans-serif;
+      font-weight: 700;
+      font-size: 24px;
       box-shadow: 0 0 0 rgba(0,0,0,0.04);
       transition:
-        background 0.25s ease,
+        background 1.0s ease,
         color 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.2s ease;
+        box-shadow 0.4s ease,
+        transform 0.3s ease;
       overflow: hidden;
     }
  
@@ -119,7 +121,7 @@
  
     /* Kattintott (checked) állapot – „pill” forma, csak pipa látszik */
     input:checked + label .button_inner {
-      background: transparent;
+      background: #344a55;
       color: #00e578;
       border-radius: 99px;
       transform: translateY(0) scale(0.95);
@@ -181,17 +183,17 @@
   </style>
 </head>
 <body>
- 
+
 <div class="buttons">
+  Autonomous
  
   <!-- 1. Labor -->
   <div class="button">
     <input type="checkbox" id="btn-labor">
     <label for="btn-labor" class="button_label">
       <div class="button_inner">
-        <i class="l ion-log-in"></i>
+        <i class="l ion-checkmark"></i>
         <span class="t">Labor</span>
-        <i class="tick ion-checkmark-round"></i>
  
         <div class="bubbles">
           <span class="bubble"></span>
@@ -212,9 +214,9 @@
     <input type="checkbox" id="btn-ig">
     <label for="btn-ig" class="button_label">
       <div class="button_inner">
-        <i class="l ion-log-in"></i>
+        <i class="l ion-checkmark"></i>
         <span class="t">Igazgatási</span>
-        <i class="tick ion-checkmark-round"></i>
+        
  
         <div class="bubbles">
           <span class="bubble"></span>
@@ -235,9 +237,8 @@
     <input type="checkbox" id="btn-asd">
     <label for="btn-asd" class="button_label">
       <div class="button_inner">
-        <i class="l ion-log-in"></i>
+        <i class="l ion-checkmark"></i>
         <span class="t">Posta</span>
-        <i class="tick ion-checkmark-round"></i>
  
         <div class="bubbles">
           <span class="bubble"></span>
