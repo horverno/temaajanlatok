@@ -182,6 +182,41 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 </div>
 
 
+<button class="accordion">Félautomata sávszintű térkép (Lanelet2 OSM) előállítása a comma AI által detektált sávszélekből</button>
+<div class="panel">
+  <p>Az önvezető járművek (így az Autoware is) gyakran sávszintű HD térképet igényelnek, amely tartalmazza a sávok határait, középvonalait, a sávok közötti
+    kapcsolatokat és a forgalmi szabályokat. Ilyen térképet ma jellemzően kézzel, órák-napok munkájával készítenek, ami új helyszínen vagy útfelújítás után
+    a rendszer bevezetésének egyik legnagyobb akadálya. A feladat célja, hogy ezt a munkát olcsó, kamerás érzékelésre építve jelentősen felgyorsítsuk.</p>
+  <img src="img/commaai01.png" width="80%" />
+  
+    <p>Az egyetemi Lexus járműbe beépített comma AI eszköz kalibrált kamerájával már menet közben detektálja a sávszéleket és útszéleket, ezek ROS 2 topicokon
+    elérhetők. A detekciók a kamera kalibrációja alapján az útfelület síkjára, madárnézetbe (bird's-eye view) vetíthetők, majd a jármű pozíciójával
+    georeferálva, több áthaladásból kumulálva sávhatár-polilinekké alakíthatók. Ezekből a polilinekből kell lanelet-eket létrehozni.
+    A teljes automatizálás reálisan nem cél: a rendszer javaslatot tesz a sávhatárokra és lanelet-ekre, a felhasználó ezeket ellenőrzi, javítja és összeköti
+    (félautomata, ember a hurokban megközelítés). A jármű pozíciója két forrásból is származhat, ezek összehasonlítása a feladat része:
+    <ul>
+      <li>a comma eszköz saját GNSS / IMU alapú pozíciója (olcsó, bárhol elérhető, de pontatlanabb megoldás);</li>
+      <li>az Autoware NDT (LiDAR pontfelhő alapú) lokalizációja (pontos, de előzetes pontfelhő térképet igényel).</li>
+    </ul></p>
+  <p>Részfeladatok:
+    <ul>
+      <li>Irodalomkutatás: HD térképek, Lanelet2 formátum, automatikus és crowdsourcing alapú sávtérképezés.</li>
+      <li>A comma AI eszköz ROS 2 kimeneteinek megismerése: sávszél- és útszél-detekciók formátuma, megbízhatósági értékei, koordináta-rendszere.</li>
+      <li>A detekciók vetítése az útfelület síkjára (madárnézet), majd georeferálása GNSS, illetve NDT pózzal.</li>
+      <li>Több áthaladás kumulálása: zajszűrés, kiugró értékek eltávolítása, sávhatár-polilinek illesztése és egyszerűsítése.</li>
+      <li>Lanelet-javaslatok generálása a sávhatárpárokból, Lanelet2 OSM exporttal, amely Autoware-ben betölthető.</li>
+      <li>A javaslatok kézi ellenőrzése és javítása meglévő szerkesztőben (pl. JOSM, Vector Map Builder); a csomópontok, kereszteződések és szabályok kézi kiegészítése.</li>
+      <li>Kiértékelés referenciatérképhez és LiDAR intenzitás alapú sávjelekhez képest: helyzethiba (cm), teljesség, a két lokalizációs forrás összevetése, valamint a kézi térképezéshez viszonyított időmegtakarítás.</li>
+    </ul>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Python, programozási ismeretek</li>
+    <li><b>A munka során meg kell ismerni:</b> ROS 2, Lanelet2, koordináta-rendszerek és vetületek (UTM / MGRS), GitHub</li>
+    <li><b>Egyéb fontos tudnivaló:</b> ROS 2 Humble, a mérések az egyetemi Lexus platformon történnek, link: <a href="https://www.comma.ai/">comma.ai</a></li>
+  </ul>
+</div>
+
+
+
 
 <button class="accordion">Önvezető járművek útkeresése és tervezése ismert algoritmusok segítségével ROS 2-ben</button>
 <div class="panel">
