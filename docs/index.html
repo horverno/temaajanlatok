@@ -68,6 +68,72 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 
 <img src="img/infologo02.svg" />
 
+<button class="accordion">Magyarázható önvezetés: Autoware döntések felismerése és hangalapú magyarázata az utasnak</button>
+<div class="panel">
+  <p>Az önvezető járművek elfogadottságának egyik kulcsa az utasok bizalma. Ha az autó lassít, megáll, vár egy kereszteződésben vagy éppen nem előz, az utas
+    gyakran nem érti, miért. Ez bizonytalanságot, bizalmatlanságot okoz, még akkor is, ha a jármű döntése teljesen helyes. A magyarázható autonóm vezetés
+    (explainable autonomous driving, XAI) ezt a problémát célozza: a jármű természetes nyelven, közérthetően elmondja, mit csinál és miért.</p>
+  <p>A feladat az egyetem Autoware alapú kísérleti Lexus járművéhez egy olyan ROS 2 rendszer fejlesztése, amely felismeri az aktuális közlekedési szituációt
+    és a jármű döntésének okát, majd ezt hangalapon (voice over) közli az utassal. Például: <i>„Megállok, mert gyalogos halad át a zebrán.”</i>,
+    <i>„Nem előzök, mert szembeforgalom van.”</i>, <i>„Várok, mert piros a lámpa.”</i>
+    Az Autoware már most is publikálja a tervező modulok döntéseinek okait (AD API: <code>velocity_factors</code>, <code>steering_factors</code>, újabb verziókban
+    <code>planning_factors</code>; pl. crosswalk, traffic_light, obstacle_stop, intersection, avoidance, lane_change), ezek a percepciós objektumlistával
+    együtt adják a rendszer bemenetét.</p>
+  <p>Részfeladatok:
+    <ul>
+      <li>Irodalomkutatás: magyarázható autonóm vezetés, ember–gép interfész (HMI) önvezető járművekben, utasbizalom mérése.</li>
+      <li>Az Autoware planning és perception kimeneteinek megismerése, a döntések okait hordozó topicok feltérképezése.</li>
+      <li>Szituációfelismerő ROS 2 node készítése: a planning factor-ok és a percepciós objektumok fúziója eseményekké (pl. szabályalapú állapotgép, időbeli szűréssel, hogy a kimenet ne „villogjon”).</li>
+      <li>Magyarázó szöveg generálása: sablon (template) alapú megoldás, illetve (MSc szinten) lokálisan futó kis nyelvi modell (LLM) összevetése.</li>
+      <li>Magyar nyelvű, offline szövegfelolvasás (TTS, pl. <a href="https://github.com/rhasspy/piper">Piper</a>), prioritáskezeléssel és ismétlésszűréssel, hogy a rendszer ne beszéljen folyamatosan.</li>
+      <li>Opcionálisan: utaskérdések fogadása beszédfelismeréssel (pl. Whisper), pl. <i>„Miért állunk?”</i></li>
+      <li>Validálás rögzített mérésekből (MCAP / rosbag visszajátszás) és/vagy CARLA szimulációban: helyes ok aránya, késleltetés, téves magyarázatok száma. MSc szinten rövid utasvizsgálat (érthetőség, bizalom kérdőívvel).</li>
+    </ul>
+    Mérési adatok az egyetemi Lexus platformról rendelkezésre állnak (<a href="https://jkk-research.github.io/latest/dataset/">jkk-research.github.io/latest/dataset/</a>), kérésre újakat is rögzítünk.
+    A téma BSc és MSc szinten is kiírható; a terjedelem a szituációk számával, az LLM alapú változattal és a felhasználói vizsgálattal skálázható.</p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Python, programozási ismeretek</li>
+    <li><b>A munka során meg kell ismerni:</b> ROS 2, Autoware, Linux, GitHub, opcionálisan LLM / TTS / ASR eszközök</li>
+    <li><b>Egyéb fontos tudnivaló:</b> ROS 2 Humble, a valós járműves tesztek az egyetemi Lexus platformon történnek</li>
+  </ul>
+</div>
+
+<button class="accordion">LiDAR és kamera alapú 3D Gaussian Splatting digitális iker az egyetemi campusról, szimulációs célra</button>
+<div class="panel">
+  <p>A 3D Gaussian Splatting (3DGS) a NeRF utáni egyik legígéretesebb jelenetrekonstrukciós eljárás: a környezetet sok ezer, térben elhelyezett és
+    színezett 3D Gauss-függvénnyel írja le, amelyekből tetszőleges nézőpontból, valós időben fotorealisztikus kép renderelhető. Az önvezető járművek
+    fejlesztésében ez új lehetőséget nyit: valós mérésekből olyan digitális iker készíthető, amelyben a jármű szenzorai új nézőpontokból, új trajektóriák
+    mentén is szimulálhatók (pl. sávváltás, eltérő pozíció), ráadásul a valósághoz sokkal közelebbi képpel, mint a hagyományos, kézzel modellezett szimulátorokban.</p>
+  <p>A legtöbb nyílt forráskódú 3DGS megoldás csak kameraképekből dolgozik, ami nagy, kültéri, járműről rögzített jeleneteknél gyakran pontatlan geometriát
+    és „lebegő” hibákat eredményez. A feladat célja, hogy a egyetemi Lexus járművel rögzített kamera <b>és LiDAR</b> mérésekből készüljön el a campus
+    (vagy egy jól körülhatárolt része) digitális ikre, ahol a LiDAR adat aktív szerepet kap a rekonstrukcióban:
+    <ul>
+      <li>pontos járműpózok előállítása LiDAR alapú lokalizációval / SLAM-mel (pl. KISS-ICP, FAST-LIO2), a kamerás SfM (COLMAP) helyett vagy mellett;</li>
+      <li>a Gauss-függvények inicializálása a LiDAR pontfelhőből;</li>
+      <li>mélységi felügyelet (depth supervision) a tanítás során a LiDAR pontok kamerába vetítésével;</li>
+      <li>opcionálisan LiDAR szenzor szimulációja is a rekonstruált jelenetből (pontfelhő renderelése), nem csak kameraképé.</li>
+    </ul></p>
+  <p>Részfeladatok:
+    <ul>
+      <li>Irodalomkutatás: NeRF és 3DGS alapok, LiDAR-támogatott és járműves (street scene) Gaussian Splatting megoldások (pl. Street Gaussians, SplatAD), nyílt eszközök (gsplat, nerfstudio).</li>
+      <li>Mérés tervezése és rögzítése a campuson (útvonal, sebesség, napszak), illetve meglévő MCAP felvételek feldolgozása.</li>
+      <li>Adatelőkészítés: kamera–LiDAR időszinkron és extrinsic kalibráció ellenőrzése, pózok, kameraképek és pontfelhők exportálása a tanító pipeline formátumára.</li>
+      <li>Referencia: csak kamerás 3DGS rekonstrukció. Saját megoldás: LiDAR inicializálással és mélységi felügyelettel bővített változat.</li>
+      <li>Kiértékelés kvantitatív (PSNR, SSIM, LPIPS, mélységhiba a LiDAR-hoz képest) és kvalitatív szempontból, különös tekintettel a tanítási trajektóriától eltérő (pl. szomszédos sávból nézett) nézőpontokra.</li>
+      <li>ROS 2 node, amely adott járműpózhoz a digitális ikerből renderelt kameraképet (és opcionálisan pontfelhőt) publikál, így az Autoware percepciós láncához szimulált szenzorként csatlakoztatható.</li>
+    </ul>
+    <p><img src="img/3ddigital_twin01.png" width="80%" /></p>
+    Mérési adatok a egyetemi Lexus platformról rendelkezésre állnak (<a href="https://jkk-research.github.io/latest/dataset/">jkk-research.github.io/latest/dataset/</a>), kérésre újakat is rögzítünk.
+    A téma MSc szintre ajánlott; BSc szinten a feladat a rekonstrukcióra és a kamera/LiDAR összehasonlításra szűkíthető.</p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Python, alapvető lineáris algebra és 3D geometria</li>
+    <li><b>A munka során meg kell ismerni:</b> PyTorch, CUDA alapú 3DGS eszközök (gsplat / nerfstudio), ROS 2, Open3D / PCL, GitHub</li>
+    <li><b>Egyéb fontos tudnivaló:</b> a tanításhoz NVIDIA GPU szükséges (a egyetemi gépek korlátozottan használhatók), ROS 2 Humble</li>
+  </ul>
+</div>
+
+
+
 <button class="accordion">Önvezető járművek útkeresése és tervezése ismert algoritmusok segítségével ROS 2-ben</button>
 <div class="panel">
   <p>Az önvezető autózás dinamikusan növekvő területének egyik kulcsfontosságú kihívása az optimális
