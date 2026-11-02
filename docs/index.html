@@ -3,15 +3,20 @@
 <title>Témaajánlatok</title>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="img/favico.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
 h2 {
   font-family: 'Roboto', sans-serif;
-  color: #244339;
+  color: #242943;
 }
 p {
   font-family: 'Roboto', sans-serif;
   padding-left: 20px;
+}
+.intro {
+  color: #6b6b6b;
+  padding-left: 0;
 }
 b{
   color: #242943;
@@ -32,7 +37,7 @@ b{
 }
 
 .active{
-  background-color: #f5f5f5;
+  background-color: #d9e3df;
   font-family: 'Roboto', sans-serif;
 }
 .accordion:hover {
@@ -45,9 +50,53 @@ b{
   padding: 0 18px;
   background-color: #fcfcfc;
   color: #5f647c;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  display: none;
+}
+.panel.open {
+  display: block;
+}
+.panel-title {
+  padding-left: 20px;
+}
+
+.layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.list, .content {
+  height: 75vh;
+  overflow-y: auto;
+}
+.list {
+  flex: 0 0 35%;
+}
+.list .accordion {
+  display: block;
+  margin-bottom: 2px;
+}
+.list h2 {
+  margin: 24px 0 10px;
+}
+.content {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  background-color: #fcfcfc;
+}
+.content img, .content iframe {
+  max-width: 100%;
+}
+@media (max-width: 800px) {
+  .layout {
+    flex-direction: column;
+  }
+  .list, .content {
+    flex: none;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+  }
 }
 
 body {
@@ -62,7 +111,7 @@ body {
 
 <h2>Témaajánlatok</h2>
 
-<p>A címekre kattintva további információk jelennek meg. 
+<p class="intro">A címekre kattintva további információk jelennek meg. 
 A témák programozáshoz kapcsolódnak és leginkább robotika, önvezető járművek, ROS, mesterséges intelligencia, C++, python, Linux ismereteket igényelnek. 
 Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="#korabbi">korábbi témák továbbfejlesztése</a> lehetséges, egyeztessük emailben.</p>
 
@@ -104,7 +153,8 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
     színezett 3D Gauss-függvénnyel írja le, amelyekből tetszőleges nézőpontból, valós időben fotorealisztikus kép renderelhető. Az önvezető járművek
     fejlesztésében ez új lehetőséget nyit: valós mérésekből olyan digitális iker készíthető, amelyben a jármű szenzorai új nézőpontokból, új trajektóriák
     mentén is szimulálhatók (pl. sávváltás, eltérő pozíció), ráadásul a valósághoz sokkal közelebbi képpel, mint a hagyományos, kézzel modellezett szimulátorokban.</p>
-  <p>A legtöbb nyílt forráskódú 3DGS megoldás csak kameraképekből dolgozik, ami nagy, kültéri, járműről rögzített jeleneteknél gyakran pontatlan geometriát
+    <p><img src="img/3ddigital_twin01.png" width="80%" /></p>
+    <p>A legtöbb nyílt forráskódú 3DGS megoldás csak kameraképekből dolgozik, ami nagy, kültéri, járműről rögzített jeleneteknél gyakran pontatlan geometriát
     és „lebegő” hibákat eredményez. A feladat célja, hogy a egyetemi Lexus járművel rögzített kamera <b>és LiDAR</b> mérésekből készüljön el a campus
     (vagy egy jól körülhatárolt része) digitális ikre, ahol a LiDAR adat aktív szerepet kap a rekonstrukcióban:
     <ul>
@@ -122,7 +172,6 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
       <li>Kiértékelés kvantitatív (PSNR, SSIM, LPIPS, mélységhiba a LiDAR-hoz képest) és kvalitatív szempontból, különös tekintettel a tanítási trajektóriától eltérő (pl. szomszédos sávból nézett) nézőpontokra.</li>
       <li>ROS 2 node, amely adott járműpózhoz a digitális ikerből renderelt kameraképet (és opcionálisan pontfelhőt) publikál, így az Autoware percepciós láncához szimulált szenzorként csatlakoztatható.</li>
     </ul>
-    <p><img src="img/3ddigital_twin01.png" width="80%" /></p>
     Mérési adatok a egyetemi Lexus platformról rendelkezésre állnak (<a href="https://jkk-research.github.io/latest/dataset/">jkk-research.github.io/latest/dataset/</a>), kérésre újakat is rögzítünk.
     A téma MSc szintre ajánlott; BSc szinten a feladat a rekonstrukcióra és a kamera/LiDAR összehasonlításra szűkíthető.</p>
   <ul>
@@ -216,7 +265,7 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
   <p>A járművet körülvevő objektumok mozgásának prediktálása, becslése (esztimálása) az önvezető (autonóm) járművek fontos alfeladata. Jelenlegi tudásunk szerint ezt a feladatot kameraképből vagy LIDAR pontfelhőből neurális hálók segítségével lehet a leghatékonyabban megoldani. Erre megoldás lehet például az időbeliséget reprezentáló RNN (recurrent neural network) alkalmazása. </p>
   <p>
     A munka nem előzménynélküli, saját részmegoldások és egyéb források is elérhetőek:
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/OT_MxopvfQ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OT_MxopvfQ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </p>
   <p>Fontos, hogy real-time (20Hz) és ROS node megoldás fogadható csak el.</p>
   <ul>
@@ -244,7 +293,7 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 <button class="accordion">Konvolúciós neurális háló-alapú vezethető útfelület meghatározás</button>
 <div class="panel">
   <p>A vezethető útfelület észlelése mind az vezetéstámogatás, mind az önvezető járművek fontos alfeladata. Kameraképből a vezethető útfelület meghatározása mai tudásunk szerint leghatékonyabban neurális hálók segítségével lehet. A rendszer megköveteli az úthatár azonosítását és a környező akadályok, például járművek, gyalogosok, védőkorlátok és épületek felderítését. A fejlesztendő rendszer által észlelt eredmény felhasználható ütközések elkerülésére és az útvonal tervezésére. A feladat része, hogy ROS sensor_msgs/Image típusban érkező képből visualization_msgs/MarkerArray típusú üzenetben jelenítse meg az út szélét, átkonvertálva azt "bird eye view"-ba. A marker az út szélét jelző félpoligonokból álljon, lehetőleg egyszerűsített módon, kevés pontszámból álljon. A fejlesztendő algoritmussal szemben támasztott további követelmény a 20Hz-es feldolgozási idő. Mentett log adatok a fejlesztéshez publikusan elérhetőek (<a href="https://github.com/szenergy/szenergy-public-resources">github.com/szenergy/szenergy-public-resources </a>), de kérésre újakat is tudunk rögzíteni. </p>
-  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/hkLjQw2ZjWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/hkLjQw2ZjWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
   <ul>
     <li><b>Szükséges elősimeretek:</b> Python</li>
     <li><b>A munka során meg kell ismerni:</b> TensorFlow / PyTorch, ROS / ROS2, Linux / Windows 11 WSLg</li>
@@ -266,14 +315,14 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 <!-- Korábbi témaajánlatok -->
 
 
-<h2 style="margin-top:4cm;"><div id="korabbi">Korábbi témaajánlatok</div></h2>
+<h2><div id="korabbi">Korábbi témaajánlatok</div></h2>
 
 <button class="accordion">Modern webtechnológiákra épülő robotvizualizáció</button>
 <div class="panel">
   <p><b>Elvállalta: K. T. Előd</b></p>  
   <p>TypeScript, JavaScript, Node.js, yarn felhasználásával robotvizualizációs extension készítése Foxglove Studiohoz.</p>
   <p>Link: <a href="https://foxglove.dev/docs/studio/extensions/getting-started">foxglove.dev/docs/studio/extensions/getting-started</a></p>
-  <p><img src="https://media.githubusercontent.com/media/foxglove/studio/main/resources/screenshot.png" width="60%"></p>
+  <p><img src="https://sze-info.github.io/ajr/assets/images_common/foxglove04.png" width="60%"></p>
   <ul>
     <li><b>Szükséges elősimeretek:</b> </li>
     <li><b>A munka során meg kell ismerni:</b> TypeScript, JavaScript, Node.js, yarn</li>
@@ -298,7 +347,7 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
   <p><b>Elvállalta: T. István</b></p>  
   <p>LIDAR mérésekből megállapítani a kátyúkat (neurális háló segítségével)</p>
   <p><img src="img/uthiba01.png" width="1000px" /></p>
-  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/1IWXO0vvmO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/1IWXO0vvmO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
   <ul>
     <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
     <li><b>A munka során meg kell ismerni:</b> C++ / Python, ROS / ROS2, GitHub</li>
@@ -312,7 +361,7 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
   <p><b>Elvállalta: J. Mátyás</b></p>  
   <p>LIDAR mérésekből megállapítani a formgalmi sávokat real-time, 20 Hz. A hallgató feladata, hogy ROS / ROS2 kompatibilitással C++ programot (node-ot) készítsen sávdetektálásra. További lehetőség, hogy az algoritmus deszkamodelljét Python nyelven dolgozza ki. Az algoritmus bemenete sensor_msgs/PointCloud2 típusú LIDAR pontfelhő, amely városi vagy közúti környezetben készült és tartalmaz nyers sávadatokat. A kimenet olyan visualization_msgs/MarkerArray, amely a nyers sávadatokat már feldolgozott formában képes hirdetni, vizualizálni. A munkához felhasználható bármely nyílt forráskódú megoldás, forrásmegjelöléssel. A munka dokumentálása, a konzultációk történjen GitHub alapokon. Kiinduláshoz használható az egyetemi dataset: https://jkk-research.github.io/#dataset, de kérésre rögzítünk újakat.</p>
   <p><img src="https://raw.githubusercontent.com/wiki/szenergy/szenergy-public-resources/img/rviz01b.png" width="1000px" /></p>
-  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/1IWXO0vvmO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/1IWXO0vvmO8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
   <ul>
     <li><b>Szükséges elősimeretek:</b> programozási ismeretek</li>
     <li><b>A munka során meg kell ismerni:</b> C++ / Python, ROS / ROS2, GitHub</li>
@@ -352,7 +401,7 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 <div class="panel">
   <p><b>Elvállalta: Cs. Cintia</b></p>
   <p>Az egyetem tulajdonában lévő robot különböző fejelsztési feladatai.</p>
-  <p><img src="https://assets.segway-cdn.com/Product-Pictures/_product_full/loomo.png" /></p>
+  <p><img src="https://sze-info.github.io/ajr/assets/images_common/vehcile_segway01.png" /></p>
   <ul>
     <li><b>Szükséges elősimeretek:</b> Minimális Android fejlesztői ismeretek</li>
     <li><b>A munka során meg kell ismerni:</b> C++ / Python, ROS / ROS2, GitHub</li>
@@ -424,12 +473,12 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
   <p><b>Elvállalta: K. Kíra</b></p>
   <p>LIDAR mérésekből az egyetem campusának 3D mesh létrehozás, openstreetmap-ra feltöltése (ez jelenleg is létezik, de elég pontatlannak tűnik, viszont vannak LIDAR méréseink, amivel ezt meg lehetne oldani) <a href="https://osmbuildings.org/?lat=47.69387&lon=17.62802&zoom=18.6&tilt=34&rotation=-28">osmbuildings.org</a>
     Első lépés itt a 3D point cloud létrehozása lenne. Ebben van egy kis tapasztalatunk, tudok segíteni, de internetről összeszedhető a tudás. Amit mi készítettünk egy zalai épületről az pl így néz ki:
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/MoGnmP2Gc6w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/MoGnmP2Gc6w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
     Második lépés a pontfelhőből valamilyen mesh készítése akár "kézzel" akár automatikusan pl így: <a href="https://pointclouds.org/documentation/tutorials/greedy_projection.html">pointclouds.org</a>
     Aztán jó lenne egyszerűsíteni ezt a mesht, ha olyan bonyolutra sikerült, mint a fenti linken, primitívekkel (pl tégletest, henger)
     Ezután megismerni az OSM API-t 
     Pontosítani a jelenlegi ábrázolást és feltölteni</p>
-  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/kTf-VvokQH8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+  <p><iframe width="560" height="315" src="https://www.youtube.com/embed/kTf-VvokQH8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
   <ul>
     <li><b>Szükséges elősimeretek:</b> programozási ismeretek, 3D ismeretek (pl Blender)</li>
     <li><b>A munka során meg kell ismerni:</b> SVL simulator, GitHub</li>
@@ -439,19 +488,44 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
 
 <script>
 var acc = document.getElementsByClassName("accordion");
-var i;
+var panels = document.getElementsByClassName("panel");
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
+var layout = document.createElement("div");
+layout.className = "layout";
+var list = document.createElement("div");
+list.className = "list";
+var content = document.createElement("div");
+content.className = "content";
+layout.appendChild(list);
+layout.appendChild(content);
+acc[0].parentNode.insertBefore(layout, acc[0]);
+
+var buttons = Array.prototype.slice.call(acc);
+var panelList = Array.prototype.slice.call(panels);
+var korabbi = document.getElementById("korabbi").parentNode;
+var firstKorabbi = korabbi.nextElementSibling;
+buttons.forEach(function(b) { list.appendChild(b); });
+panelList.forEach(function(p) { content.appendChild(p); });
+list.insertBefore(korabbi, firstKorabbi);
+panelList.forEach(function(p, j) {
+  var title = document.createElement("h2");
+  title.className = "panel-title";
+  title.textContent = buttons[j].textContent.trim();
+  p.insertBefore(title, p.firstChild);
+});
+
+function show(index) {
+  buttons.forEach(function(b, j) {
+    b.classList.toggle("active", j === index);
+    panelList[j].classList.toggle("open", j === index);
   });
+  content.scrollTop = 0;
 }
+
+buttons.forEach(function(b, j) {
+  b.addEventListener("click", function() { show(j); });
+});
+show(0);
 </script>
 
 </body>
