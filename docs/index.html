@@ -89,13 +89,20 @@ b{
 }
 @media (max-width: 800px) {
   .layout {
-    flex-direction: column;
+    display: block;
   }
-  .list, .content {
-    flex: none;
-    width: 100%;
+  .list {
     height: auto;
-    max-height: 60vh;
+    overflow: visible;
+  }
+  .content {
+    display: none;
+  }
+  .list .panel {
+    margin-bottom: 8px;
+  }
+  .panel-title {
+    display: none;
   }
 }
 
@@ -549,18 +556,49 @@ panelList.forEach(function(p, j) {
   p.insertBefore(title, p.firstChild);
 });
 
+var mq = window.matchMedia("(max-width: 800px)");
+var current = 0;
+
+function setOpen(j, on) {
+  buttons[j].classList.toggle("active", on);
+  panelList[j].classList.toggle("open", on);
+}
+
 function show(index) {
-  buttons.forEach(function(b, j) {
-    b.classList.toggle("active", j === index);
-    panelList[j].classList.toggle("open", j === index);
-  });
-  content.scrollTop = 0;
+  if (mq.matches) {
+    // Mobil: harmonika, egyszerre csak egy leírás lehet nyitva
+    var on = !panelList[index].classList.contains("open");
+    buttons.forEach(function(b, j) { setOpen(j, on && j === index); });
+    if (on) {
+      current = index;
+      buttons[index].scrollIntoView({ block: "nearest" });
+    }
+  } else {
+    // Asztali: lista balra, kiválasztott leírás jobbra
+    current = index;
+    buttons.forEach(function(b, j) { setOpen(j, j === index); });
+    content.scrollTop = 0;
+  }
+}
+
+function applyLayout() {
+  if (mq.matches) {
+    panelList.forEach(function(p, j) {
+      list.insertBefore(p, buttons[j].nextSibling);
+      setOpen(j, false);
+    });
+  } else {
+    panelList.forEach(function(p) { content.appendChild(p); });
+    buttons.forEach(function(b, j) { setOpen(j, j === current); });
+  }
 }
 
 buttons.forEach(function(b, j) {
   b.addEventListener("click", function() { show(j); });
 });
-show(0);
+if (mq.addEventListener) { mq.addEventListener("change", applyLayout); }
+else { mq.addListener(applyLayout); }
+applyLayout();
 </script>
 
 </body>
