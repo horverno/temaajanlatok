@@ -222,7 +222,34 @@ Utóbbiak minden témaleírásnál külön feltüntetve. Itt felsorolt <a href="
   </ul>
 </div>
 
-
+<button class="accordion">Könnyűsúlyú ROS 2 forgalomszimulátor Lanelet2 térképekhez, RViz2 / Foxglove megjelenítéssel</button>
+<div class="panel">
+  <p>Az önvezető járművek tervező és irányító algoritmusainak fejlesztéséhez gyakran nincs szükség fotorealisztikus 3D szimulátorra (pl. CARLA). Ezek erőforrásigényesek,
+    lassan indulnak, és sok esetben ilyen felhasználásra fölöslegesen bonyolultak. A tervezési feladatokhoz elég, ha a jármű és a forgalom a sávszintű térképen, felülnézetből,
+    gyorsan és reprodukálhatóan szimulálható. Erre jó példa a TU München <a href="https://commonroad.in.tum.de/">CommonRoad</a> keretrendszere, amely azonban
+    nem ROS 2 alapú, így a valós járművön futó szoftverrel nehezen kapcsolható össze.</p>
+  <p>A feladat egy könnyűsúlyú, saját klasszikus 3D felület nélküli ROS 2 szimulátor fejlesztése. A szimulátor beolvassa a Lanelet2 (OSM) térképet, erre háttérforgalmat
+    generál, és létrehoz egy virtuális saját járművet (ego vehicle), amely ROS 2 topicokon keresztül vezérelhető. A megjelenítés kizárólag RViz2-ben vagy
+    Foxglove-ban történik (MarkerArray, TF). Így a szimulátor laptopon is futtatható, akár valós idejűnél gyorsabban, és ugyanazokat az üzenettípusokat
+    használja, mint az egyetemi Lexus jármű szoftvere.</p>
+  <p>Részfeladatok:
+    <ul>
+      <li>Irodalomkutatás: CommonRoad, SUMO, az Autoware <code>simple_planning_simulator</code> és hasonló könnyűsúlyú szimulátorok összevetése, előnyök és hiányosságok.</li>
+      <li>Lanelet2 térkép betöltése és megjelenítése RViz2-ben / Foxglove-ban (sávhatárok, középvonalak, stopvonalak).</li>
+      <li>Virtuális ego jármű kinematikai (és opcionálisan dinamikus) bicikli modellel. Vezérlés kormányszög és sebesség / gyorsulás paranccsal (pl. Ackermann vagy Autoware control üzenetek); odometria és TF publikálása.</li>
+      <li>Forgalomgenerálás: a lanelet-gráfon útvonalat választó járművek, követési modellel (pl. IDM – Intelligent Driver Model), opcionálisan sávváltással (pl. MOBIL) és kereszteződésbeli elsőbbséggel.</li>
+      <li>A forgalmi szereplők publikálása objektumlistaként (pl. <code>autoware_perception_msgs</code>), így a szimulátor egy tervező algoritmus bemenetét adhatja percepció nélkül.</li>
+      <li>Szcenáriók leírása egyszerű konfigurációs fájlban (kiindulási pozíciók, forgalomsűrűség, véletlenmag), opcionálisan CommonRoad szcenárió importálása.</li>
+      <li>Demonstráció egy egyszerű tervezővel / szabályozóval (pl. pure pursuit), valamint futási sebesség és erőforrásigény összevetése egy 3D szimulátorral.</li>
+    </ul>
+    A szimulátor fejlesztése során a következő technológiák használata kerül sorra: Python, C++, ROS 2, Lanelet2, RViz2, Foxglove. Lanelet2 térképek az egyetemi campusról és a ZalaZONE tesztpályáról rendelkezésre állnak. A téma BSc és MSc szinten is kiírható: BSc szinten
+    az ego jármű és az egyszerű követéses forgalom a cél, MSc szinten a sávváltás, a kereszteződések és a szcenárió-import is.</p>
+  <ul>
+    <li><b>Szükséges elősimeretek:</b> Python vagy C++, programozási ismeretek</li>
+    <li><b>A munka során meg kell ismerni:</b> ROS 2, Lanelet2, RViz2 / Foxglove, járműmodellek, GitHub</li>
+    <li><b>Egyéb fontos tudnivaló:</b> ROS 2 Humble, a szimulátor nyílt forráskódú, publikus repositoryban készül</li>
+  </ul>
+</div>
 
 
 <button class="accordion">Önvezető járművek útkeresése és tervezése ismert algoritmusok segítségével ROS 2-ben</button>
